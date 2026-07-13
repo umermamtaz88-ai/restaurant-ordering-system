@@ -1,0 +1,129 @@
+[
+  {
+    "order_id": "ord-sample01",
+    "customer_id": "cust-john",
+    "order_number": "ORD-20260701-0001",
+    "order_type": "Delivery",
+    "items": [
+      {
+        "item_id": "item-margherita",
+        "name": "Margherita Pizza",
+        "quantity": 2,
+        "unit_price": 12.99,
+        "total_price": 25.98
+      },
+      {
+        "item_id": "item-latte",
+        "name": "Caffe Latte",
+        "quantity": 1,
+        "unit_price": 4.99,
+        "total_price": 4.99
+      }
+    ],
+    "subtotal": 30.97,
+    "discount": 3.1,
+    "tax": 2.23,
+    "delivery_fee": 4.99,
+    "total": 35.09,
+    "payment_method": "Card",
+    "payment_status": "Paid",
+    "order_status": "Completed",
+    "coupon_code": "SAVE10",
+    "estimated_time": 50,
+    "notes": "Ring doorbell twice",
+    "created_at": "2026-07-01T12:00:00+00:00",
+    "updated_at": "2026-07-01T13:30:00+00:00"
+  },
+  {
+    "order_id": "ord-sample02",
+    "customer_id": "cust-jane",
+    "order_number": "ORD-20260701-0002",
+    "order_type": "Dine In",
+    "items": [
+      {
+        "item_id": "item-classic-burger",
+        "name": "Classic Cheeseburger",
+        "quantity": 1,
+        "unit_price": 11.99,
+        "total_price": 11.99
+      },
+      {
+        "item_id": "item-fries",
+        "name": "Crispy Fries",
+        "quantity": 1,
+        "unit_price": 3.99,
+        "total_price": 3.99
+      }
+    ],
+    "subtotal": 15.98,
+    "discount": 0.0,
+    "tax": 1.28,
+    "delivery_fee": 0.0,
+    "total": 17.26,
+    "payment_method": "Cash",
+    "payment_status": "Paid",
+    "order_status": "Completed",
+    "coupon_code": null,
+    "estimated_time": 15,
+    "notes": null,
+    "created_at": "2026-07-01T18:00:00+00:00",
+    "updated_at": "2026-07-01T18:45:00+00:00"
+  },
+  {
+    "order_id": "ord-6f4996b5",
+    "customer_id": "cust-john",
+    "order_number": "ORD-20260711-0001",
+    "order_type": "Takeaway",
+    "items": [
+      {
+        "item_id": "item-pepperoni",
+        "name": "Pepperoni Pizza",
+        "quantity": 1,
+        "unit_price": 16.99,
+        "total_price": 16.99
+      }
+    ],
+    "subtotal": 16.99,
+    "discount": 0.0,
+    "tax": 1.36,
+    "delivery_fee": 0.0,
+    "total": 18.35,
+    "payment_method": "Cash",
+    "payment_status": "Pending",
+    "order_status": "Pending",
+    "coupon_code": null,
+    "estimated_time": 20,
+    "notes": null,
+    "created_at": "2026-07-11T11:05:16.516864+00:00",
+    "updated_at": "2026-07-11T11:05:16.516864+00:00"
+  },
+  {
+    "order_id": "ord-b4713a06",
+    "owner_id": "e29df24a-5f7b-4cfd-b1cf-98cdef561024",
+    "customer_id": "cust-7bfe6bae",
+    "order_number": "ORD-20260713-0001",
+    "order_type": "Takeaway",
+    "items": [
+      {
+        "item_id": "item-d8704afa",
+        "name": "Margherita2",
+        "quantity": 1,
+        "unit_price": 10.0,
+        "total_price": 10.0
+      }
+    ],
+    "subtotal": 10.0,
+    "discount": 0.0,
+    "tax": 0.8,
+    "delivery_fee": 0.0,
+    "total": 10.8,
+    "payment_method": "Cash",
+    "payment_status": "Pending",
+    "order_status": "Pending",
+    "coupon_code": null,
+    "estimated_time": 15,
+    "notes": "Test",
+    "created_at": "2026-07-13T13:52:13.825174+00:00",
+    "updated_at": "2026-07-13T13:52:13.825174+00:00"
+  }
+]

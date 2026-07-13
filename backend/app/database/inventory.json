@@ -1,0 +1,42 @@
+[
+  {
+    "inventory_id": "inv-mozzarella",
+    "ingredient_name": "Mozzarella Cheese",
+    "quantity": 25.5,
+    "unit": "kg",
+    "minimum_stock": 10.0,
+    "available": true
+  },
+  {
+    "inventory_id": "inv-tomato",
+    "ingredient_name": "Tomato Sauce",
+    "quantity": 15.0,
+    "unit": "liters",
+    "minimum_stock": 5.0,
+    "available": true
+  },
+  {
+    "inventory_id": "inv-beef",
+    "ingredient_name": "Ground Beef",
+    "quantity": 8.0,
+    "unit": "kg",
+    "minimum_stock": 10.0,
+    "available": true
+  },
+  {
+    "inventory_id": "inv-coffee",
+    "ingredient_name": "Coffee Beans",
+    "quantity": 3.5,
+    "unit": "kg",
+    "minimum_stock": 5.0,
+    "available": true
+  },
+  {
+    "inventory_id": "inv-flour",
+    "ingredient_name": "Pizza Flour",
+    "quantity": 50.0,
+    "unit": "kg",
+    "minimum_stock": 20.0,
+    "available": true
+  }
+]

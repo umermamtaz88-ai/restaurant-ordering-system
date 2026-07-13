@@ -1,0 +1,84 @@
+[
+  {
+    "category_id": "cat-pizza",
+    "name": "Pizza",
+    "description": "Hand-tossed artisan pizzas",
+    "image_url": "https://example.com/images/pizza.jpg",
+    "active": true,
+    "sort_order": 1,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-burger",
+    "name": "Burger",
+    "description": "Juicy gourmet burgers",
+    "image_url": "https://example.com/images/burger.jpg",
+    "active": true,
+    "sort_order": 2,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-coffee",
+    "name": "Coffee",
+    "description": "Freshly brewed coffee and espresso",
+    "image_url": "https://example.com/images/coffee.jpg",
+    "active": true,
+    "sort_order": 3,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-desserts",
+    "name": "Desserts",
+    "description": "Sweet treats and baked goods",
+    "image_url": "https://example.com/images/desserts.jpg",
+    "active": true,
+    "sort_order": 4,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-drinks",
+    "name": "Drinks",
+    "description": "Soft drinks, juices, and beverages",
+    "image_url": "https://example.com/images/drinks.jpg",
+    "active": true,
+    "sort_order": 5,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-sides",
+    "name": "Sides",
+    "description": "Appetizers and side dishes",
+    "image_url": "https://example.com/images/sides.jpg",
+    "active": true,
+    "sort_order": 6,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "category_id": "cat-9e848828",
+    "owner_id": "947d15ef-165e-47d8-bb4a-8e28e150ead0",
+    "name": "Pizza",
+    "description": "Pizza",
+    "image_url": null,
+    "active": true,
+    "sort_order": 1,
+    "created_at": "2026-07-13T13:51:46.913436+00:00",
+    "updated_at": "2026-07-13T13:51:46.913436+00:00"
+  },
+  {
+    "category_id": "cat-609d8ca2",
+    "owner_id": "e29df24a-5f7b-4cfd-b1cf-98cdef561024",
+    "name": "Pizza2",
+    "description": "Pizza",
+    "image_url": null,
+    "active": true,
+    "sort_order": 1,
+    "created_at": "2026-07-13T13:52:13.666407+00:00",
+    "updated_at": "2026-07-13T13:52:13.666407+00:00"
+  }
+]

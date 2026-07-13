@@ -1,0 +1,29 @@
+[
+  {
+    "coupon_id": "coup-save10",
+    "code": "SAVE10",
+    "type": "Percentage",
+    "value": 10,
+    "minimum_order": 25.0,
+    "expiry_date": "2026-12-31",
+    "active": true
+  },
+  {
+    "coupon_id": "coup-flat5",
+    "code": "FLAT5",
+    "type": "Fixed Discount",
+    "value": 5.0,
+    "minimum_order": 20.0,
+    "expiry_date": "2026-12-31",
+    "active": true
+  },
+  {
+    "coupon_id": "coup-welcome20",
+    "code": "WELCOME20",
+    "type": "Percentage",
+    "value": 20,
+    "minimum_order": 30.0,
+    "expiry_date": "2026-06-30",
+    "active": true
+  }
+]

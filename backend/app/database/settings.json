@@ -1,0 +1,7 @@
+{
+  "tax_rate": 0.08,
+  "delivery_fee": 4.99,
+  "min_delivery_order": 15.0,
+  "restaurant_name": "Bella Italia Restaurant",
+  "currency": "USD"
+}

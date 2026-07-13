@@ -1,0 +1,210 @@
+[
+  {
+    "item_id": "item-margherita",
+    "name": "Margherita Pizza",
+    "description": "Classic pizza with fresh tomato sauce, mozzarella, and basil",
+    "category_id": "cat-pizza",
+    "image_url": "https://example.com/images/margherita.jpg",
+    "price": 14.99,
+    "discount_price": 12.99,
+    "available": true,
+    "preparation_time": 20,
+    "calories": 850,
+    "ingredients": [
+      "tomato sauce",
+      "mozzarella",
+      "basil",
+      "olive oil"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "spicy_level": 0,
+    "rating": 4.8,
+    "total_reviews": 156,
+    "featured": true,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-pepperoni",
+    "name": "Pepperoni Pizza",
+    "description": "Loaded with premium pepperoni and extra cheese",
+    "category_id": "cat-pizza",
+    "image_url": "https://example.com/images/pepperoni.jpg",
+    "price": 16.99,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 20,
+    "calories": 980,
+    "ingredients": [
+      "tomato sauce",
+      "mozzarella",
+      "pepperoni"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "spicy_level": 1,
+    "rating": 4.6,
+    "total_reviews": 203,
+    "featured": true,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-classic-burger",
+    "name": "Classic Cheeseburger",
+    "description": "Angus beef patty with cheddar, lettuce, tomato, and special sauce",
+    "category_id": "cat-burger",
+    "image_url": "https://example.com/images/burger.jpg",
+    "price": 11.99,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 15,
+    "calories": 720,
+    "ingredients": [
+      "beef patty",
+      "cheddar",
+      "lettuce",
+      "tomato",
+      "bun"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "spicy_level": 0,
+    "rating": 4.5,
+    "total_reviews": 89,
+    "featured": false,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-latte",
+    "name": "Caffe Latte",
+    "description": "Smooth espresso with steamed milk",
+    "category_id": "cat-coffee",
+    "image_url": "https://example.com/images/latte.jpg",
+    "price": 4.99,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 5,
+    "calories": 190,
+    "ingredients": [
+      "espresso",
+      "steamed milk"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "spicy_level": 0,
+    "rating": 4.7,
+    "total_reviews": 312,
+    "featured": true,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-tiramisu",
+    "name": "Tiramisu",
+    "description": "Classic Italian dessert with espresso-soaked ladyfingers",
+    "category_id": "cat-desserts",
+    "image_url": "https://example.com/images/tiramisu.jpg",
+    "price": 7.99,
+    "discount_price": 6.49,
+    "available": true,
+    "preparation_time": 5,
+    "calories": 450,
+    "ingredients": [
+      "mascarpone",
+      "ladyfingers",
+      "espresso",
+      "cocoa"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy",
+      "eggs"
+    ],
+    "spicy_level": 0,
+    "rating": 4.9,
+    "total_reviews": 78,
+    "featured": true,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-fries",
+    "name": "Crispy Fries",
+    "description": "Golden crispy french fries with sea salt",
+    "category_id": "cat-sides",
+    "image_url": "https://example.com/images/fries.jpg",
+    "price": 3.99,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 10,
+    "calories": 365,
+    "ingredients": [
+      "potatoes",
+      "sea salt",
+      "vegetable oil"
+    ],
+    "allergens": [],
+    "spicy_level": 0,
+    "rating": 4.3,
+    "total_reviews": 145,
+    "featured": false,
+    "created_at": "2026-01-01T10:00:00+00:00",
+    "updated_at": "2026-01-01T10:00:00+00:00"
+  },
+  {
+    "item_id": "item-0d7a63be",
+    "owner_id": "947d15ef-165e-47d8-bb4a-8e28e150ead0",
+    "name": "Margherita",
+    "description": "Classic",
+    "category_id": "cat-9e848828",
+    "image_url": null,
+    "price": 10.0,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 15,
+    "calories": 500,
+    "ingredients": [
+      "cheese"
+    ],
+    "allergens": [],
+    "spicy_level": 0,
+    "rating": 0.0,
+    "total_reviews": 0,
+    "featured": false,
+    "created_at": "2026-07-13T13:51:46.984760+00:00",
+    "updated_at": "2026-07-13T13:51:46.984760+00:00"
+  },
+  {
+    "item_id": "item-d8704afa",
+    "owner_id": "e29df24a-5f7b-4cfd-b1cf-98cdef561024",
+    "name": "Margherita2",
+    "description": "Classic",
+    "category_id": "cat-609d8ca2",
+    "image_url": null,
+    "price": 10.0,
+    "discount_price": null,
+    "available": true,
+    "preparation_time": 15,
+    "calories": 500,
+    "ingredients": [
+      "cheese"
+    ],
+    "allergens": [],
+    "spicy_level": 0,
+    "rating": 0.0,
+    "total_reviews": 0,
+    "featured": false,
+    "created_at": "2026-07-13T13:52:13.756143+00:00",
+    "updated_at": "2026-07-13T13:52:13.756143+00:00"
+  }
+]
