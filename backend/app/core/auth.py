@@ -18,7 +18,7 @@ class TokenRevocationStore:
             self.store.insert({"jti": jti})
 
     def is_revoked(self, jti: str) -> bool:
-        return jti in self._read_jtis()
+        return self.store.find_by_id("jti", jti) is not None
 
     def _read_jtis(self) -> list[str]:
         records = self.store.read_all()

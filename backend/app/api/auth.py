@@ -34,6 +34,19 @@ async def register(data: RegisterRequest):
 
 
 @router.post(
+    "/signup",
+    summary="Sign up (alias for register)",
+    description="Alias of /register for frontend signup flows.",
+    status_code=status.HTTP_201_CREATED,
+)
+async def signup(data: RegisterRequest):
+    result, error = auth_service.register(data)
+    if error:
+        raise HTTPException(status_code=400, detail=error)
+    return success_response("Registration successful", result)
+
+
+@router.post(
     "/login",
     summary="Login",
     description="Authenticate with email and password to receive JWT tokens.",

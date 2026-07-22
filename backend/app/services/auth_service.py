@@ -15,6 +15,7 @@ from app.core.security import (
     create_refresh_token,
     decode_token,
     hash_password,
+    normalize_phone,
     validate_password_strength,
     validate_phone,
     verify_password,
@@ -26,7 +27,7 @@ from app.schemas.auth import (
     RegisterRequest,
 )
 from app.db.repository import DbRepository
-from app.utils.validators import check_duplicate, validate_email
+from app.utils.validators import validate_email
 
 
 class AuthService:
@@ -49,11 +50,7 @@ class AuthService:
         return self.store.find_by_id(self.id_field, user_id)
 
     def get_user_by_email(self, email: str) -> Optional[dict]:
-        email_lower = email.lower()
-        for user in self.get_all_users():
-            if user.get("email", "").lower() == email_lower:
-                return user
-        return None
+        return self.store.find_by_field("email", email.lower())
 
     def register(self, data: RegisterRequest) -> tuple[Optional[dict], Optional[str]]:
         if not validate_email(data.email):
@@ -66,8 +63,7 @@ class AuthService:
         if not validate_phone(data.phone):
             return None, "Invalid phone number format"
 
-        users = self.get_all_users()
-        if check_duplicate(users, "email", data.email, id_field=self.id_field):
+        if self.get_user_by_email(data.email):
             return None, f"User with email '{data.email}' already exists"
 
         now = self._now()
@@ -76,10 +72,11 @@ class AuthService:
             "full_name": data.full_name.strip(),
             "email": data.email.lower(),
             "password_hash": hash_password(data.password),
-            "phone": data.phone.strip(),
+            "phone": normalize_phone(data.phone),
             "address": None,
             "avatar_url": None,
-            "role": data.role,
+            # Public signup is always a customer (staff created via scripts)
+            "role": "customer",
             "is_active": True,
             "created_at": now,
             "updated_at": now,
@@ -87,7 +84,7 @@ class AuthService:
 
         self.store.insert(user)
         return build_token_response(
-            *self._issue_tokens(user["user_id"]),
+            *self._issue_tokens(user),
             user=user,
         ), None
 
@@ -100,7 +97,7 @@ class AuthService:
             return None, "Account is inactive"
 
         return build_token_response(
-            *self._issue_tokens(user["user_id"]),
+            *self._issue_tokens(user),
             user=user,
         ), None
 
@@ -124,7 +121,7 @@ class AuthService:
         if not user or not user.get("is_active", True):
             return None, "User not found or inactive"
 
-        access_token, new_refresh_token = self._issue_tokens(user_id)
+        access_token, new_refresh_token = self._issue_tokens(user)
         token_revocation_store.revoke(jti)
 
         return build_token_response(access_token, new_refresh_token, user), None
@@ -155,7 +152,7 @@ class AuthService:
 
         updates = data.model_dump(exclude_unset=True)
         if "phone" in updates:
-            updates["phone"] = updates["phone"].strip()
+            updates["phone"] = normalize_phone(updates["phone"])
         if "full_name" in updates:
             updates["full_name"] = updates["full_name"].strip()
 
@@ -200,9 +197,17 @@ class AuthService:
             return False, "User not found"
         return True, None
 
-    def _issue_tokens(self, user_id: str) -> tuple[str, str]:
-        access_token = create_access_token(user_id)
-        refresh_token, _jti = create_refresh_token(user_id)
+    def _issue_tokens(self, user: dict) -> tuple[str, str]:
+        access_token = create_access_token(
+            user["user_id"],
+            extra={
+                "role": user.get("role") or "customer",
+                "is_active": bool(user.get("is_active", True)),
+                "email": user.get("email"),
+                "full_name": user.get("full_name"),
+            },
+        )
+        refresh_token, _jti = create_refresh_token(user["user_id"])
         return access_token, refresh_token
 
 

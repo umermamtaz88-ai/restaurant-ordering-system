@@ -3,7 +3,7 @@
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
@@ -13,6 +13,7 @@ from jwt.exceptions import InvalidTokenError
 load_dotenv()
 
 from app.api import (
+    admin,
     auth,
     categories,
     coupons,
@@ -25,25 +26,27 @@ from app.api import (
     reports,
 )
 from app.core.auth import sanitize_user
-from app.core.dependencies import get_current_user
 from app.core.security import decode_token
 from app.db.session import init_db
 from app.services.auth_service import auth_service
 from app.utils.response import error_response
 
 PUBLIC_PATHS = {
+    "/",
     "/health",
     "/docs",
     "/openapi.json",
     "/redoc",
     "/api/v1/auth/register",
+    "/api/v1/auth/signup",
     "/api/v1/auth/login",
     "/api/v1/auth/refresh",
 }
 
 
 def _is_public_path(path: str) -> bool:
-    if path in PUBLIC_PATHS:
+    normalized = path.rstrip("/") or "/"
+    if path in PUBLIC_PATHS or normalized in PUBLIC_PATHS:
         return True
     return path.startswith("/docs") or path.startswith("/redoc")
 
@@ -70,7 +73,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+        "http://127.0.0.1:3001",
+        "http://localhost:3001",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -112,7 +120,36 @@ async def authentication_middleware(request: Request, call_next):
         )
 
     user_id = payload.get("sub")
-    user = auth_service.get_user_by_id(user_id) if user_id else None
+    if not user_id:
+        return JSONResponse(
+            status_code=401,
+            content=error_response("Invalid token payload"),
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    # Prefer JWT claims to avoid a DB hit on every request (kitchen polls, etc.)
+    if "role" in payload:
+        if not payload.get("is_active", True):
+            return JSONResponse(
+                status_code=401,
+                content=error_response("User not found or inactive"),
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        request.state.current_user = {
+            "user_id": user_id,
+            "email": payload.get("email"),
+            "full_name": payload.get("full_name"),
+            "role": payload.get("role") or "customer",
+            "is_active": True,
+            "phone": None,
+            "address": None,
+            "avatar_url": None,
+            "created_at": None,
+            "updated_at": None,
+        }
+        return await call_next(request)
+
+    user = auth_service.get_user_by_id(user_id)
     if not user or not user.get("is_active", True):
         return JSONResponse(
             status_code=401,
@@ -151,6 +188,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 app.include_router(health.router)
 app.include_router(auth.router, prefix="/api/v1")
+app.include_router(admin.router, prefix="/api/v1")
 app.include_router(categories.router, prefix="/api/v1")
 app.include_router(menu.router, prefix="/api/v1")
 app.include_router(customers.router, prefix="/api/v1")
@@ -195,7 +233,7 @@ app.openapi = custom_openapi
 
 
 @app.get("/", tags=["Root"], summary="API Root")
-async def root(current_user: dict = Depends(get_current_user)):
+async def root():
     return {
         "success": True,
         "message": "Welcome to Restaurant Ordering System API",
@@ -203,6 +241,12 @@ async def root(current_user: dict = Depends(get_current_user)):
             "docs": "/docs",
             "health": "/health",
             "version": "1.0.0",
-            "user": current_user["email"],
+            "auth": {
+                "register": "/api/v1/auth/register",
+                "signup": "/api/v1/auth/signup",
+                "login": "/api/v1/auth/login",
+                "refresh": "/api/v1/auth/refresh",
+                "me": "/api/v1/auth/me",
+            },
         },
     }

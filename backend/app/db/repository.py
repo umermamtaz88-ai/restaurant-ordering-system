@@ -95,6 +95,20 @@ class DbRepository:
             row = session.scalars(select(self.model).where(column == id_value)).first()
             return row.to_dict() if row else None
 
+    def find_by_field(self, field: str, value: Any) -> Optional[dict]:
+        with SessionLocal() as session:
+            column = getattr(self.model, field)
+            row = session.scalars(select(self.model).where(column == value)).first()
+            return row.to_dict() if row else None
+
+    def find_by_ids(self, id_field: str, id_values: list[str]) -> List[dict]:
+        if not id_values:
+            return []
+        with SessionLocal() as session:
+            column = getattr(self.model, id_field)
+            rows = session.scalars(select(self.model).where(column.in_(id_values))).all()
+            return [row.to_dict() for row in rows]
+
     def find_index_by_id(self, id_field: str, id_value: str) -> Optional[int]:
         items = self.read_all()
         for index, item in enumerate(items):

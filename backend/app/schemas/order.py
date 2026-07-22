@@ -27,11 +27,32 @@ class OrderCreate(BaseModel):
     notes: Optional[str] = Field(default=None, examples=["Extra napkins please"])
 
 
+class StorefrontOrderItem(BaseModel):
+    product_id: str = Field(..., examples=["m1"])
+    name: str = Field(..., min_length=1, examples=["Solenne Latte"])
+    quantity: int = Field(..., ge=1, examples=[2])
+    unit_price: float = Field(..., ge=0, examples=[5.75])
+
+
+class StorefrontCheckoutRequest(BaseModel):
+    delivery_type: str = Field(..., examples=["delivery"])
+    payment_method: str = Field(..., examples=["card"])
+    items: List[StorefrontOrderItem] = Field(..., min_length=1)
+    notes: Optional[str] = None
+    address: Optional[str] = None
+    city: Optional[str] = None
+    zip_code: Optional[str] = None
+
+
 class OrderUpdate(BaseModel):
     order_status: Optional[OrderStatus] = None
     payment_status: Optional[PaymentStatus] = None
     payment_method: Optional[PaymentMethod] = None
     notes: Optional[str] = None
+
+
+class KitchenStatusUpdate(BaseModel):
+    order_status: OrderStatus = Field(..., examples=["Preparing"])
 
 
 class OrderItemResponse(BaseModel):

@@ -26,6 +26,19 @@ PASSWORD_PATTERN = re.compile(
 PHONE_PATTERN = re.compile(r"^\+?[1-9]\d{7,14}$")
 
 
+def normalize_phone(phone: str) -> str:
+    """Strip formatting and keep an optional leading + with digits only."""
+    raw = phone.strip()
+    has_plus = raw.startswith("+")
+    digits = re.sub(r"\D", "", raw)
+    if not digits:
+        return raw
+    # Drop trunk zero after country code style inputs like +1 (555)...
+    if has_plus:
+        return f"+{digits}"
+    return digits
+
+
 def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
@@ -46,7 +59,7 @@ def validate_password_strength(password: str) -> Optional[str]:
 
 
 def validate_phone(phone: str) -> bool:
-    return bool(PHONE_PATTERN.match(phone.strip()))
+    return bool(PHONE_PATTERN.match(normalize_phone(phone)))
 
 
 def create_access_token(user_id: str, extra: Optional[dict] = None) -> str:
