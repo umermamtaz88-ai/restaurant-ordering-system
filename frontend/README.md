@@ -1,85 +1,79 @@
-# OrderHub — Restaurant Admin Frontend
+# Solenne Café — Premium Frontend
 
-Premium restaurant ordering system dashboard built with Next.js 16, TypeScript, and Tailwind CSS v4.
+Frontend-only Next.js website for **Solenne Café**: a warm, luxury coffee house experience with menu browsing, cart/checkout UI, reservations, and full marketing pages. No mock APIs — local static data and client state, ready for backend integration.
 
-## Prerequisites
+## Tech stack
 
-- Node.js 18+
-- FastAPI backend running at `http://127.0.0.1:8000`
+- Next.js 16 (App Router) + React 19 + TypeScript
+- Tailwind CSS v4
+- Framer Motion, Embla Carousel, Lucide React
+- React Hook Form + Zod
+- next-themes (light/dark, persisted)
+- Sonner toasts
+- clsx + tailwind-merge
 
 ## Installation
 
 ```bash
+cd frontend
 npm install
+npm run dev
 ```
 
-## Environment
+Open [http://localhost:3000](http://localhost:3000).
 
-Create `.env.local`:
-
-```
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
-```
-
-## Run
+### Other scripts
 
 ```bash
-# Development
-npm run dev
-
-# Production build
-npm run build
-npm start
+npm run build   # production build
+npm run start   # serve production build
+npm run lint    # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+## Pages
 
-## Tech Stack
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage (hero, categories, menu, offers, about, gallery, testimonials, reservation, newsletter) |
+| `/menu` | Full menu with search, filters, sort, grid/list |
+| `/menu/[slug]` | Product detail |
+| `/cart` | Cart + coupon + order summary |
+| `/checkout` | Delivery/pickup + payment UI |
+| `/about` | Story, team, timeline, achievements |
+| `/gallery` | Masonry gallery + lightbox |
+| `/testimonials` | Guest reviews |
+| `/blog`, `/blog/[slug]` | Journal |
+| `/reservation` | Table booking form |
+| `/contact` | Map placeholder + contact form |
+| `/login`, `/signup` | Auth UI (demo toasts) |
+| `/profile` | Favorites + account shell |
+| `/privacy`, `/terms` | Legal |
+| 404 | Custom not-found |
 
-- **Next.js 16** — App Router
-- **TypeScript** — Type safety
-- **Tailwind CSS v4** — Styling & design tokens
-- **TanStack Query** — Server state management
-- **TanStack Table** — Data tables
-- **React Hook Form + Zod** — Form validation
-- **Framer Motion** — Animations
-- **Recharts** — Charts & analytics
-- **Sonner** — Toast notifications
-- **Lucide React** — Icons
-- **next-themes** — Dark/light mode
-
-## Backend Integration
-
-All 36 API endpoints under `/api/v1` are integrated:
-
-| Resource | Endpoints |
-|----------|-----------|
-| Dashboard | GET stats |
-| Orders | CRUD + filters |
-| Menu | CRUD + filters |
-| Categories | CRUD + filters |
-| Customers | CRUD + search |
-| Coupons | CRUD + filters |
-| Inventory | CRUD + filters |
-| Reports | 7 report endpoints |
-
-## Project Structure
+## Architecture
 
 ```
-app/                    # Next.js App Router pages
-components/
-  ui/                   # Reusable UI components
-  layout/               # Sidebar, navbar, mobile nav
-  shared/               # Status badges, loading states
-hooks/                  # TanStack Query hooks
-services/               # API service layer
-types/                  # TypeScript types
-lib/                    # Utilities & constants
-providers/              # React providers
+src/
+  app/           # Next.js routes
+  components/    # ui, layout, sections, shared
+  features/      # cart, menu, gallery, forms
+  data/          # static menu, categories, content
+  hooks/
+  lib/           # theme, zod schemas
+  types/
+  constants/
+  utils/
+  styles/        # design tokens + theme
 ```
 
-## Missing Backend Features
+## Theme
 
-- **Authentication** — No auth endpoints in backend
-- **Settings API** — Tax/delivery rates are backend-only via settings.json
-- **Real-time notifications** — No WebSocket endpoints
+Warm coffee palette (espresso, cream, latte, olive) with Fraunces + Outfit typography. Theme preference is stored via `next-themes` (`solenne-theme`). Cart/favorites persist in `localStorage`.
+
+## Backend-ready
+
+Forms validate with Zod and resolve with demo toasts — swap toasts for API calls. Cart context mirrors a typical cart API shape (`addItem`, `updateQuantity`, etc.). Menu data lives in `src/data/menu.ts` for easy replacement with fetchers.
+
+## Production status
+
+`npm run build` completes successfully. The frontend is production-ready for static/UI delivery and prepared for backend integration.

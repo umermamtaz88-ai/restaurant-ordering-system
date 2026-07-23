@@ -1,0 +1,10 @@
+export { Hero } from "./hero";
+export { FeaturedCategories } from "./featured-categories";
+export { PopularMenu } from "./popular-menu";
+export { SpecialOffers } from "./special-offers";
+export { AboutPreview } from "./about-preview";
+export { WhyChoose } from "./why-choose";
+export { GalleryPreview } from "./gallery-preview";
+export { Testimonials } from "./testimonials";
+export { Newsletter } from "./newsletter";
+export { NewsletterForm } from "./newsletter-form";
